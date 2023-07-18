@@ -34,7 +34,7 @@ builder.Services.AddSingleton(new MeilisearchClient("http://localhost:7700",
 
 builder.Services.AddDbContext<TooniverseContext>();
 
-//builder.Services.AddHostedService<AnimeMappingService>();
+builder.Services.AddHostedService<AnimeMappingService>();
 // builder.Services.AddHostedService<MeiliSearchSyncService>(); 
 // builder.Services.AddHostedService<AnimeRelationService>();
 builder.Services.AddOutputCache();

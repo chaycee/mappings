@@ -15,14 +15,14 @@ public class TooniverseContext : DbContext
         "Host=109.122.221.131;Port=9000;Database=clk5o63f000099so7bv8e4jyd;User Id=clk5o63ez00079so79h23e5z7;Password=IA3QEtetxMzP7tk3xUBGsSut;";
 
     private const string TooniVPSOracleString =
-        "Host=150.136.90.137;Port=9000;Database=clk5o63f000099so7bv8e4jyd;User Id=clk5o63ez00079so79h23e5z7;Password=IA3QEtetxMzP7tk3xUBGsSut;";
+        "Host=150.136.90.137;Port=9000;Database=tooni;User Id=clk5o63ez00079so79h23e5z7;Password=IA3QEtetxMzP7tk3xUBGsSut;";
 
     public DbSet<Media> Anime { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(LocalStringTooni);
+        optionsBuilder.UseNpgsql(TooniVPSOracleString);
         optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
     }
 

@@ -29,12 +29,10 @@ public class AnimeMappingService : IHostedService, IDisposable
             using var scope = _serviceScopeFactory.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<TooniverseContext>();
             var alreadyMapped = dbContext.Anime.Select(x => int.Parse(x.MappedFrom.Id)).ToArray();
-            var ids = MalSyncBackup.GetIds();
-            //var ids = GetAnimeIDs().Result.ToArray();
+            //var ids = MalSyncBackup.GetIds();
+            var ids = GetAnimeIDs().Result.ToArray();
             Console.WriteLine(ids.Length);
             var difference = ids.Except(alreadyMapped).ToArray();
-            Console.WriteLine(difference.Length);
-            Console.WriteLine(difference.Length);
             Console.WriteLine(difference.Length);
             Array.Sort(difference);
             DoWork(difference);

@@ -14,7 +14,6 @@ public class AnilistInfo : Request
     {
         var request = CreateRequestMessage(GenerateBatchAnilist.Generate(ids));
         var response = await SendWithProxyAsync(request);
-        Console.WriteLine(response);
         return await ResponseToData(response);
     }
 
