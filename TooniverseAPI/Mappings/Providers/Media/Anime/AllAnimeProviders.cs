@@ -1,4 +1,5 @@
 using HotChocolate.Language;
+using Juro.Models.Anime;
 using Juro.Providers.Anime;
 using TooniverseAPI.Database;
 using TooniverseAPI.Mappings.Providers.Id;
@@ -9,7 +10,6 @@ namespace TooniverseAPI.Mappings.Providers.Media.Anime;
 
 public class AllAnimeProviders
 {
-    private TMDB _tmdbClient = new();
 
     //TODO: Ensure ALL mappings from MALSYNC are here
     public async Task<List<ProviderResult>> SearchAsync(string query, int id, int? year = null, string? format = null)
@@ -18,7 +18,16 @@ public class AllAnimeProviders
         {
             try
             {
-                var searchRes = await provider.SearchAsync(query);
+                ValueTask<List<IAnimeInfo>> searchTask;
+                if (provider is AnimePahe animePaheProvider)
+                {
+                    searchTask =animePaheProvider.SearchAsync(query, true);
+                }
+                else
+                {
+                    searchTask = provider.SearchAsync(query);
+                }
+                var searchRes = await searchTask;
                 var result = searchRes.Select(x => new SearchResult
                 {
                     Id = x.Id,

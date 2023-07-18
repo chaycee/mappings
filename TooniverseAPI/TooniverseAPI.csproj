@@ -11,7 +11,7 @@
         <PackageReference Include="F23.StringSimilarity" Version="5.1.0"/>
         <PackageReference Include="HotChocolate.AspNetCore" Version="13.2.1"/>
         <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.2.1"/>
-        <PackageReference Include="HtmlAgilityPack" Version="1.11.48"/>
+        <PackageReference Include="Juro" Version="1.1.4" />
         <PackageReference Include="Meilisearch" Version="0.14.2"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.7">
@@ -41,10 +41,5 @@
         <Folder Include="Migrations\"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Reference Include="Juro">
-            <HintPath>W:\Juro\Juro\bin\Release\net6.0\Juro.dll</HintPath>
-        </Reference>
-    </ItemGroup>
 
 </Project>

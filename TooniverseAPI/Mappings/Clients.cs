@@ -12,7 +12,7 @@ public static class Clients
     public static readonly Gogoanime _gogoanime = new();
     public static readonly Zoro _zoro = new();
     public static readonly NineAnime _nineAnime = new();
-    public static AnimePahe _animePahe = new(true);
+    public static AnimePahe _animePahe = new();
     public static TMDB _tmdb = new();
     public static TVDB _tvdb = new();
 
