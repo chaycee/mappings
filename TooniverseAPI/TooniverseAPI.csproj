@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="F23.StringSimilarity" Version="5.1.0"/>
+        <PackageReference Include="HotChocolate.AspNetCore" Version="13.2.1"/>
+        <PackageReference Include="HotChocolate.Data.EntityFramework" Version="13.2.1"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.48"/>
+        <PackageReference Include="Meilisearch" Version="0.14.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4"/>
+        <PackageReference Include="ShellProgressBar" Version="5.2.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="TaskExecutor" Version="1.0.3"/>
+        <PackageReference Include="TMDbLib" Version="2.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Mappings\Providers\Media\"/>
+        <Folder Include="Migrations\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Juro">
+            <HintPath>W:\Juro\Juro\bin\Release\net6.0\Juro.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>
