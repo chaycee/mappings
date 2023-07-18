@@ -29,14 +29,14 @@ var art = @"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀";
 
 Console.WriteLine(art);
-builder.Services.AddSingleton(new MeilisearchClient("http://localhost:7700",
+builder.Services.AddSingleton(new MeilisearchClient("http://150.136.90.137:7700",
     "mBexx2khL4184VgswA-LOFIJy29cO_Uer24yH5B0dgM"));
 
 builder.Services.AddDbContext<TooniverseContext>();
 
-builder.Services.AddHostedService<AnimeMappingService>();
-// builder.Services.AddHostedService<MeiliSearchSyncService>(); 
-// builder.Services.AddHostedService<AnimeRelationService>();
+//builder.Services.AddHostedService<AnimeMappingService>();
+ // builder.Services.AddHostedService<MeiliSearchSyncService>(); 
+ // builder.Services.AddHostedService<AnimeRelationService>();
 builder.Services.AddOutputCache();
 builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting();
 
