@@ -81,6 +81,7 @@ public class Media
     public string[]? Tags { get; set; }
     public ICollection<Character> Characters { get; set; } = new List<Character>();
     public string? Status { get; set; }
+    public string? Season { get; set; }
     public string? Format { get; set; }
     public int? Favorites { get; set; }
     public int? Duration { get; set; }

@@ -31,7 +31,8 @@ public class Mappings : ControllerBase
     {
         _context = context;
     }
-
+    
+    [OutputCache(Duration = 3600)]
     [HttpGet("info/{id}")]
     public ActionResult Info(int id)
     {
@@ -42,6 +43,7 @@ public class Mappings : ControllerBase
 
     private Random _rand = new();
 
+    [OutputCache(Duration = 3600)]
     [HttpGet("info/random")]
     public ActionResult RandomInfo()
     {

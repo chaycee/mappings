@@ -26,6 +26,7 @@ public partial class AnimeCrawler
             Genres = GetAnimeGenres(anime),
             Color = GetAnimeColor(anime),
             InsertedAt = DateTime.UtcNow,
+            Season = anime.season,
             Type = Type.Anime,
             Relations = GetMediaRelations(anime),
             Characters = GetCharacters(anime),

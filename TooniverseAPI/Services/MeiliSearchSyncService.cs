@@ -53,7 +53,9 @@ public class MeiliSearchSyncService : IHostedService, IDisposable
                 Format = m.Format,
                 AverageScore = m.AverageScore,
                 Popularity = m.Popularity,
-                Mappings = m.Mappings
+                Mappings = m.Mappings,
+                Color = m.Color,
+                Season = m.Season
             })
             .ToList();
 
@@ -89,5 +91,7 @@ public class MediaDto
     public string? Format { get; set; }
     public int? AverageScore { get; set; }
     public int? Popularity { get; set; }
+    public string? Color { get; set; }
+    public string? Season { get; set; }
     public ICollection<Mapping> Mappings { get; set; }
 }
