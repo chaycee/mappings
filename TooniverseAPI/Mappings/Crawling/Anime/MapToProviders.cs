@@ -95,23 +95,47 @@ public partial class AnimeCrawler
         if (bestMatch.BestMatchIndex < providerResult.Results!.Count)
         {
             var best = providerResult.Results[bestMatch.BestMatchIndex];
-
+            
+            
             if (bestMatch.BestMatch.Value > _similarityThreshold)
             {
-                if (!string.IsNullOrEmpty(best.Poster))
-                    artworks.Add(new Artwork()
+                if (year is not null&&best.Year is not null)
+                {
+                    if(best.Year.Contains(year.ToString()??"Failed"))
+                    {
+                        if (!string.IsNullOrEmpty(best.Poster))
+                            artworks.Add(new Artwork()
+                            {
+                                Source = Source.MapToSource(providerResult.Name),
+                                Image = best.Poster,
+                                Type = "Poster"
+                            });
+
+                        mappings.Add(new Mapping()
+                        {
+                            Source = Source.MapToSource(providerResult.Name),
+                            SourceId = best.Id,
+                            Type = best.Type
+                        });
+                    }
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(best.Poster))
+                        artworks.Add(new Artwork()
+                        {
+                            Source = Source.MapToSource(providerResult.Name),
+                            Image = best.Poster,
+                            Type = "Poster"
+                        });
+
+                    mappings.Add(new Mapping()
                     {
                         Source = Source.MapToSource(providerResult.Name),
-                        Image = best.Poster,
-                        Type = "Poster"
+                        SourceId = best.Id,
+                        Type = best.Type
                     });
-
-                mappings.Add(new Mapping()
-                {
-                    Source = Source.MapToSource(providerResult.Name),
-                    SourceId = best.Id,
-                    Type = best.Type
-                });
+                }
             }
         }
     }
