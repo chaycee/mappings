@@ -14,7 +14,7 @@ public partial class AnimeCrawler
         var title = CleanTitle(anime.title);
         var titles = GetTitles(anime);
         var year = anime.startDate.year ?? anime.seasonYear;
-        var searchResults = await SearchProviders(title, anime);
+        var searchResults = anime.status == "NOT_YET_RELEASED"? new List<ProviderResult>() : await SearchProviders(title, anime);
         var artworksAndMappings = ProcessSearchResults(searchResults, titles, year);
 
         return ConstructSubMedia(artworksAndMappings);
@@ -115,7 +115,8 @@ public partial class AnimeCrawler
                         {
                             Source = Source.MapToSource(providerResult.Name),
                             SourceId = best.Id,
-                            Type = best.Type
+                            Type = best.Type,
+                            Similarity = bestMatch.BestMatch.Value
                         });
                     }
                 }
@@ -133,7 +134,8 @@ public partial class AnimeCrawler
                     {
                         Source = Source.MapToSource(providerResult.Name),
                         SourceId = best.Id,
-                        Type = best.Type
+                        Type = best.Type,
+                        Similarity = bestMatch.BestMatch.Value
                     });
                 }
             }

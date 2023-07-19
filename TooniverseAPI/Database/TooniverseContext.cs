@@ -182,6 +182,8 @@ public class Mapping
     public string? Source { get; set; }
     public string? Type { get; set; }
     public string? SourceId { get; set; }
+    
+    public double? Similarity { get; set; }
 }
 
 public class Artwork

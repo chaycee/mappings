@@ -57,16 +57,16 @@ public class AllAnimeProviders
         var animeTasks = Clients.AllAnimeProviders
             .Select(x =>
             {
-                if (alreadyMapped?.Contains(Source.MapToSource(x.Name)) == true)
-                    return Task.FromResult(new ProviderResult
-                    {
-                        Name = Source.MapToSource(x.Name),
-                        Mapping = mapped?.Mappings?.FirstOrDefault(m =>
-                            Source.MapToSource(m.Source) == Source.MapToSource(x.Name)),
-                        Artwork = mapped?.Artworks?.FirstOrDefault(a =>
-                            Source.MapToSource(a.Source) == Source.MapToSource(x.Name)),
-                        HasMapping = true
-                    });
+                // if (alreadyMapped?.Contains(Source.MapToSource(x.Name)) == true)
+                //     return Task.FromResult(new ProviderResult
+                //     {
+                //         Name = Source.MapToSource(x.Name),
+                //         Mapping = mapped?.Mappings?.FirstOrDefault(m =>
+                //             Source.MapToSource(m.Source) == Source.MapToSource(x.Name)),
+                //         Artwork = mapped?.Artworks?.FirstOrDefault(a =>
+                //             Source.MapToSource(a.Source) == Source.MapToSource(x.Name)),
+                //         HasMapping = true
+                //     });
 
                 // If no mappings, then call SearchProviderAsync
                 return SearchProviderAsync(x);
