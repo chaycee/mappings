@@ -28,8 +28,6 @@ public class MeiliSearchSyncService : IHostedService, IDisposable
         using var scope = _serviceScopeFactory.CreateScope();
         var _dbContext = scope.ServiceProvider.GetRequiredService<TooniverseContext>();
         var index = await _meiliSearchClient.GetIndexAsync("anime");
-        await index.DeleteAllDocumentsAsync();
-        await Task.Delay(20_000);
         var ids = await index.GetDocumentsAsync<Tuple<int>>(new DocumentsQuery()
         {
             Fields = new List<string>() { "id" },
