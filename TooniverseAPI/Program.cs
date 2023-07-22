@@ -7,6 +7,7 @@ using TooniverseAPI.Data;
 using TooniverseAPI.Database;
 using TooniverseAPI.Mappings;
 using TooniverseAPI.Mappings.Crawling.Anime;
+using TooniverseAPI.Middleware;
 using TooniverseAPI.Services;
 AnimeCrawler crawler = new();
 Console.OutputEncoding = Encoding.UTF8;
@@ -43,6 +44,7 @@ builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFi
 builder.Services.AddControllers();
 
 var app = builder.Build();
+app.UseMiddleware<RequestLoggingMiddleware>();
 app.MapGet("/", () => "Hello World!");
 app.UseOutputCache();
 app.UseAuthorization();
