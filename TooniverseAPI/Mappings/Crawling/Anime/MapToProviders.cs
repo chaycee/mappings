@@ -130,16 +130,61 @@ public partial class AnimeCrawler
                             Type = "Poster"
                         });
 
+                    var source = Source.MapToSource(providerResult.Name);
+                    var sourceId = CleanProviderId(best.Id, source);
                     mappings.Add(new Mapping()
                     {
-                        Source = Source.MapToSource(providerResult.Name),
-                        SourceId = best.Id,
+                        Source = source,
+                        SourceId =sourceId,
                         Type = best.Type,
                         Similarity = bestMatch.BestMatch.Value
                     });
                 }
             }
         }
+    }
+    
+    private static string CleanProviderId(string id,string provider)
+    {
+        switch (provider)
+        {
+            case Source.NineAnime:
+            {
+                int lastDotIndex = id.LastIndexOf('.');
+
+                if (lastDotIndex >= 0 && lastDotIndex < id.Length - 1)
+                {
+                    return id.Substring(lastDotIndex + 1);
+                }
+                else
+                {
+                    return id;
+                }
+            }
+            case Source.Gogoanime:
+            {
+                string prefix = "/category/";
+                if (id.StartsWith(prefix)) 
+                {
+                    return id.Substring(prefix.Length);
+                }
+                return id;
+            }
+            case Source.Zoro:
+            {
+                
+                if (id.StartsWith('/')) 
+                {
+                    return id.Substring(1).Replace("?ref=search", "");
+                }
+                return id;
+            }
+            default:
+                return id;
+            
+        }
+        
+        
     }
 
     private SubMedia ConstructSubMedia((List<Artwork> artworks, List<Mapping> mappings) artworksAndMappings)

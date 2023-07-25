@@ -5,7 +5,7 @@ namespace TooniverseAPI.Mappings.Utils.Extensions;
 
 public static class MediaExtensions
 {
-    public static AnimeType? GenerateReturnType(this IQueryable<Media> media)
+    public static ParallelQuery<AnimeType> GenerateReturnType(this IQueryable<Media> media)
     {
         return media
             .Include(x => x.Characters)
@@ -73,7 +73,34 @@ public static class MediaExtensions
                     Color = x.Color
                 }).AsSplitQuery()
             .AsNoTracking()
-            .AsParallel()
-            .FirstOrDefault();
+            .AsParallel();
+
+    }
+     public static ParallelQuery<SlimAnimeType> GenerateSlimReturnType(this IQueryable<Media> media)
+    {
+        return media
+          .Select(x =>
+                new SlimAnimeType
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Titles = x.Titles,
+                    Poster = x.Poster,
+                    Banner = x.Banner,
+                    Overview = x.Overview,
+                    Genres = x.Genres,
+                    Year = x.Year,
+                    Status = x.Status,
+                    Format = x.Format,
+                    Favorites = x.Favorites,
+                    Duration = x.Duration,
+                    AverageScore = x.AverageScore,
+                    MeanScore = x.MeanScore,
+                    Popularity = x.Popularity,
+                    Color = x.Color
+                }).AsSplitQuery()
+            .AsNoTracking()
+            .AsParallel();
+
     }
 }

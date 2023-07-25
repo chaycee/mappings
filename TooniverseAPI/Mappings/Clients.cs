@@ -3,14 +3,14 @@ using Juro.Providers.Anime;
 using TooniverseAPI.Mappings.Providers.Meta.Shared;
 using AnimePahe = Juro.Providers.Anime.AnimePahe;
 using NineAnime = Juro.Providers.Anime.NineAnime;
-using Zoro = Juro.Providers.Anime.Zoro;
+using Aniwatch = Juro.Providers.Anime.Aniwatch;
 
 namespace TooniverseAPI.Mappings;
 
 public static class Clients
 {
     public static readonly Gogoanime _gogoanime = new();
-    public static readonly Zoro _zoro = new();
+    public static readonly Aniwatch _zoro = new();
     public static readonly NineAnime _nineAnime = new();
     public static AnimePahe _animePahe = new();
     public static TMDB _tmdb = new();
