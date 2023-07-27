@@ -36,8 +36,8 @@ builder.Services.AddSingleton(new MeilisearchClient("https://toonify-meilisearch
 builder.Services.AddDbContext<TooniverseContext>();
 
 //builder.Services.AddHostedService<AnimeMappingService>();
-// builder.Services.AddHostedService<MeiliSearchSyncService>();
-// builder.Services.AddHostedService<AnimeRelationService>();
+//builder.Services.AddHostedService<MeiliSearchSyncService>();
+//builder.Services.AddHostedService<AnimeRelationService>();
 builder.Services.AddOutputCache();
 builder.Services.AddGraphQLServer().AddQueryType<Query>().AddProjections().AddFiltering().AddSorting();
 

@@ -61,6 +61,7 @@ public static class GenerateBatchAnilist
                                  duration
                                  genres
                                  synonyms
+                                 trending
                                  isAdult
                                  averageScore
                                  meanScore

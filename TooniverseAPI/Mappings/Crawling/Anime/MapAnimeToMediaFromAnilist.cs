@@ -22,7 +22,8 @@ public partial class AnimeCrawler
             Tags = GetAnimeTags(anime),
             Poster = GetAnimePoster(anime),
             Banner = anime.bannerImage,
-            Year = GetAnimeYear(anime),
+            SeasonYear = GetAnimeYear(anime),
+            StartDate = GetStartDate(anime),
             Genres = GetAnimeGenres(anime),
             Color = GetAnimeColor(anime),
             InsertedAt = DateTime.UtcNow,
@@ -38,8 +39,19 @@ public partial class AnimeCrawler
             Duration = anime.duration,
             MeanScore = anime.meanScore,
             AverageScore = anime.averageScore,
+            Trending = anime.trending,
             Popularity = anime.popularity,
             YoutubeTrailers = GetYoutubeTrailer(anime)
+        };
+    }
+
+    private static Database.StartDate GetStartDate(Medium anime)
+    {
+        return new Database.StartDate()
+        {
+            Day = anime.startDate.day,
+            Month = anime.startDate.month,
+            Year = anime.startDate.year
         };
     }
 

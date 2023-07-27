@@ -1,25 +1,10 @@
-using System.Diagnostics;
-using Juro.Models;
-using Meilisearch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using TooniverseAPI.Database;
-using TooniverseAPI.Mappings;
-using TooniverseAPI.Mappings.Crawling.Anime;
-using TooniverseAPI.Mappings.Providers.Meta.Anime.Anilist;
-using TooniverseAPI.Mappings.Providers.Meta.Anime.Anilist.Characters;
-using TooniverseAPI.Mappings.Utils;
 using TooniverseAPI.Mappings.Utils.Extensions;
-using TooniverseAPI.Models;
-using TooniverseAPI.Services;
-using Artwork = TooniverseAPI.Database.Artwork;
-using Mapping = TooniverseAPI.Database.Mapping;
-using Type = TooniverseAPI.Database.Type;
 
 namespace TooniverseAPI.Controllers;
-
+//TODO: add update history for things like rating eg. popularity, score, etc.
 [ApiController]
 [Route("[controller]")]
 public class Anime : ControllerBase
@@ -55,7 +40,7 @@ public class Anime : ControllerBase
         anime?.RemoveStringArrayDuplicates();
         return Ok(anime);
     }
-    
+    [OutputCache(Duration = 86_400)]
     [HttpGet("top")]
     public ActionResult TopInfo(int perPage = 25,int page =1)
     {
@@ -73,6 +58,7 @@ public class Anime : ControllerBase
         
         return Ok(anime);
     }
+    [OutputCache(Duration = 86_400)]
     [HttpGet("trending")]
     public ActionResult TrendingInfo(int perPage = 25,int page =1)
     {
@@ -80,15 +66,25 @@ public class Anime : ControllerBase
         {
             perPage = MaxPerPage;
         }
+        // var anime = _context.Anime
+        //     .Where(x=>x.Popularity != null&&x.SeasonYear!=null&&x.Status != "NOT_YET_RELEASED"&&x.Status != "FINISHED")
+        //     .OrderByDescending(x=>x.Popularity)
+        //     .ThenByDescending(x=>x.StartDate.Year)
+        //     .ThenByDescending(x=>x.StartDate.Month)
+        //     .ThenByDescending(x=>x.StartDate.Day)
+        //     .Skip(perPage * (page - 1))
+        //     .Take(perPage)
+        //     .GenerateSlimReturnType();
         var anime = _context.Anime
-            .Where(x=>x.Popularity != null&&x.Year!=null)
-            .OrderByDescending(x=>x.Year).ThenByDescending(x=>x.Popularity)
-            .Skip(perPage * (page - 1))
-            .Take(perPage)
-            .GenerateSlimReturnType();
-        
+                    .Where(x=>x.Trending != null&&x.Status != "NOT_YET_RELEASED"&&x.Status != "FINISHED")
+                    .OrderByDescending(x=>x.Trending)
+                    .Skip(perPage * (page - 1))
+                    .Take(perPage)
+                    .GenerateSlimReturnType();
+    
         return Ok(anime);
     }
+    [OutputCache(Duration = 86_400)]
     [HttpGet("popular")]
     public ActionResult PopularInfo(int perPage = 25,int page =1)
     {

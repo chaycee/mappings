@@ -59,6 +59,7 @@ public class Medium
     public int? averageScore { get; set; }
     public int? popularity { get; set; }
     public int? favourites { get; set; }
+    public int? trending { get; set; }
     public string countryOfOrigin { get; set; }
     public bool? isLicensed { get; set; }
     public Relations relations { get; set; }

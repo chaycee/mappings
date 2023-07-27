@@ -41,7 +41,7 @@ public class MeiliSearchSyncService : IHostedService, IDisposable
                 Id = m.Id,
                 Title = m.Title,
                 Overview = m.Overview,
-                Year = m.Year,
+                Year = m.SeasonYear,
                 Poster = m.Poster,
                 Banner = m.Banner,
                 Genres = m.Genres,

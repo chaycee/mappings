@@ -73,7 +73,8 @@ public class Media
     public Type Type { get; set; }
     public string? Poster { get; set; }
     public string? Banner { get; set; }
-    public int? Year { get; set; }
+    public int? SeasonYear { get; set; }
+    public StartDate? StartDate { get; set; }
     public ICollection<Artwork> Artworks { get; set; } = new List<Artwork>();
     public string[] Titles { get; set; } = Array.Empty<string>();
     public string? Overview { get; set; }
@@ -84,6 +85,7 @@ public class Media
     public string? Season { get; set; }
     public string? Format { get; set; }
     public int? Favorites { get; set; }
+    public int? Trending { get; set; }
     public int? Duration { get; set; }
     public int? AverageScore { get; set; }
     public int? MeanScore { get; set; }
@@ -104,6 +106,14 @@ public class Media
     public DateTime? InsertedAt { get; set; } = DateTime.Now;
     public string[] YoutubeTrailers { get; set; } = Array.Empty<string>();
     public string? Color { get; set; }
+}
+
+public class StartDate
+{
+    public int Id { get; set; }
+    public int? Day { get; set; }
+    public int? Month { get; set; }
+    public int? Year { get; set; }
 }
 
 public class MediaRelation

@@ -20,7 +20,7 @@ public static class MediaExtensions
                     Overview = x.Overview,
                     Genres = x.Genres,
                     Tags = x.Tags,
-                    Year = x.Year,
+                    SeasonYear = x.SeasonYear,
                     Status = x.Status,
                     Format = x.Format,
                     Favorites = x.Favorites,
@@ -35,42 +35,44 @@ public static class MediaExtensions
                         Type = f.Type
                     }),
                     Characters = x.Characters,
-                    Related = x.RelatedTo.Take(15).Select(f => new RelatedType()
+                    Related = x.RelatedTo.Take(15).Select(f => new SlimAnimeType()
                     {
                         Id = f.Id,
                         Title = f.Title,
                         Titles = f.Titles,
                         Overview = f.Overview,
                         Genres = f.Genres,
-                        Tags = f.Tags,
                         Poster = f.Poster,
                         Banner = f.Banner,
-                        Year = f.Year,
+                        SeasonYear  = f.SeasonYear,
+                        StartDate  = f.StartDate,
                         Favorites = x.Favorites,
                         Duration = x.Duration,
                         AverageScore = x.AverageScore,
                         Popularity = x.Popularity,
                         Color = f.Color
                     }),
-                    Recommended = x.RecommendedTo.Take(15).Select(f => new RelatedType()
+                    Recommended = x.RecommendedTo.Take(15).Select(f => new SlimAnimeType()
                     {
                         Id = f.Id,
                         Title = f.Title,
                         Titles = f.Titles,
                         Overview = f.Overview,
                         Genres = f.Genres,
-                        Tags = f.Tags,
                         Poster = f.Poster,
                         Banner = f.Banner,
-                        Year = f.Year,
+                        SeasonYear  = f.SeasonYear,
+                        StartDate  = f.StartDate,
                         Favorites = x.Favorites,
                         Duration = x.Duration,
                         AverageScore = x.AverageScore,
                         Popularity = x.Popularity,
-                        Color = f.Color
+                        Color = f.Color,
                     }),
                     Mappings = x.Mappings,
-                    Color = x.Color
+                    Color = x.Color,
+                    StartDate = x.StartDate
+
                 }).AsSplitQuery()
             .AsNoTracking()
             .AsParallel();
@@ -89,7 +91,7 @@ public static class MediaExtensions
                     Banner = x.Banner,
                     Overview = x.Overview,
                     Genres = x.Genres,
-                    Year = x.Year,
+                    SeasonYear = x.SeasonYear,
                     Status = x.Status,
                     Format = x.Format,
                     Favorites = x.Favorites,
@@ -97,7 +99,8 @@ public static class MediaExtensions
                     AverageScore = x.AverageScore,
                     MeanScore = x.MeanScore,
                     Popularity = x.Popularity,
-                    Color = x.Color
+                    Color = x.Color,
+                    StartDate = x.StartDate
                 }).AsSplitQuery()
             .AsNoTracking()
             .AsParallel();
