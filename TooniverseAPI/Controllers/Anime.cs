@@ -28,7 +28,6 @@ public class Anime : ControllerBase
 
     private Random _rand = new();
 
-    [OutputCache(Duration = 3600)]
     [HttpGet("random")]
     public ActionResult RandomInfo()
     {
@@ -66,15 +65,6 @@ public class Anime : ControllerBase
         {
             perPage = MaxPerPage;
         }
-        // var anime = _context.Anime
-        //     .Where(x=>x.Popularity != null&&x.SeasonYear!=null&&x.Status != "NOT_YET_RELEASED"&&x.Status != "FINISHED")
-        //     .OrderByDescending(x=>x.Popularity)
-        //     .ThenByDescending(x=>x.StartDate.Year)
-        //     .ThenByDescending(x=>x.StartDate.Month)
-        //     .ThenByDescending(x=>x.StartDate.Day)
-        //     .Skip(perPage * (page - 1))
-        //     .Take(perPage)
-        //     .GenerateSlimReturnType();
         var anime = _context.Anime
                     .Where(x=>x.Trending != null&&x.Status != "NOT_YET_RELEASED"&&x.Status != "FINISHED")
                     .OrderByDescending(x=>x.Trending)
@@ -110,4 +100,5 @@ public class Anime : ControllerBase
             .Where(m => m.Mappings.Any(mapping => mapping.Source == source && mapping.SourceId == value))
             .GenerateReturnType().FirstOrDefault();;
     }
+    
 }
