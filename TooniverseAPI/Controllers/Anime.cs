@@ -28,6 +28,7 @@ public class Anime : ControllerBase
 
     private Random _rand = new();
 
+    [OutputCache(Duration = 240)]
     [HttpGet("random")]
     public ActionResult RandomInfo()
     {
